@@ -3,15 +3,24 @@
 # 1
 from functools import reduce
 
+def multiply(x, y):
+    return x * y
+
 numbers = [2, 3, 4, 5]
-result = reduce(lambda x, y: x * y, numbers)
+result = reduce(multiply, numbers)
 print("1. Product of all numbers:", result)
 
 
 # 2
 text = "Hello World!"
-upper = sum(1 for c in text if c.isupper())
-lower = sum(1 for c in text if c.islower())
+upper = 0
+lower = 0
+
+for c in text:
+    if c.isupper():
+        upper += 1
+    elif c.islower():
+        lower += 1
 
 print("2. Uppercase letters:", upper)
 print("   Lowercase letters:", lower)
@@ -52,17 +61,25 @@ import shutil
 import string
 
 # 1
+import os
+
 path = "."  # текущая папка
 print("1. List in path:", path)
 
-directories = [d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))]
-files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
 all_items = os.listdir(path)
+directories = []
+files = []
+
+for item in all_items:
+    if os.path.isdir(item):
+        directories.append(item)
+    else:
+        files.append(item)
 
 print("   Directories:", directories)
 print("   Files:", files)
 print("   All items:", all_items)
-print("-" * 60)
+
 
 
 # 2
